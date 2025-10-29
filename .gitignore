@@ -1,0 +1,15 @@
+﻿# Node
+node_modules/
+dist/
+# Python
+__pycache__/
+.venv/
+# OS
+.DS_Store
+# Docker
+*.log
+# IDE
+.vscode/
+.idea/
+# Env files
+.env
