@@ -1,0 +1,41 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: studentsurvey-backend
+  namespace: studentsurvey
+spec:
+  replicas: 1
+  selector:
+    matchLabels: { app: studentsurvey-backend }
+  template:
+    metadata:
+      labels: { app: studentsurvey-backend }
+    spec:
+      containers:
+      - name: backend
+        image: docker.io/YOUR_DOCKERHUB_USERNAME/studentsurvey-backend:__TAG__
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DB_HOST
+          valueFrom: { secretKeyRef: { name: db-secret, key: DB_HOST } }
+        - name: DB_PORT
+          valueFrom: { secretKeyRef: { name: db-secret, key: DB_PORT } }
+        - name: DB_USER
+          valueFrom: { secretKeyRef: { name: db-secret, key: DB_USER } }
+        - name: DB_PASS
+          valueFrom: { secretKeyRef: { name: db-secret, key: DB_PASS } }
+        - name: DB_NAME
+          valueFrom: { secretKeyRef: { name: db-secret, key: DB_NAME } }
+        readinessProbe:
+          httpGet: { path: /healthz, port: 8080 }
+          initialDelaySeconds: 3
+          periodSeconds: 5
+        livenessProbe:
+          httpGet: { path: /healthz, port: 8080 }
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        resources:
+          requests: { cpu: "100m", memory: "128Mi" }
+          limits:   { cpu: "500m", memory: "512Mi" }

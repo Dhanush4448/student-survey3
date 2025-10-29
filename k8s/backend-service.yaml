@@ -1,0 +1,12 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: studentsurvey-backend
+  namespace: studentsurvey
+spec:
+  type: ClusterIP
+  selector: { app: studentsurvey-backend }
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080

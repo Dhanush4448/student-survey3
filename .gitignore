@@ -13,3 +13,6 @@ __pycache__/
 .idea/
 # Env files
 .env
+
+*.db
+backend/studentsurvey_dev.db

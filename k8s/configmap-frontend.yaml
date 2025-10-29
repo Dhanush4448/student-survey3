@@ -1,0 +1,7 @@
+﻿apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+  namespace: studentsurvey
+data:
+  API_BASE: "http://studentsurvey-backend:8080"
