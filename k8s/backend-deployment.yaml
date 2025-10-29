@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: docker.io/YOUR_DOCKERHUB_USERNAME/studentsurvey-backend:__TAG__
+        image: docker.io/dhanush853/studentsurvey-backend:__TAG__
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080

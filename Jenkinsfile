@@ -51,14 +51,14 @@
           powershell -NoProfile -Command ^
             (Get-Content k8s\\backend-deployment.yaml) ^
               -replace '__TAG__','%IMAGE_TAG%' ^
-              -replace 'docker.io/YOUR_DOCKERHUB_USERNAME/studentsurvey-backend','%BACKEND_IMG%' ^
+              -replace 'docker.io/dhanush853/studentsurvey-backend','%BACKEND_IMG%' ^
             | kubectl -n "%NAMESPACE%" apply -f -
           kubectl -n "%NAMESPACE%" rollout status deployment/studentsurvey-backend
 
           powershell -NoProfile -Command ^
             (Get-Content k8s\\frontend-deployment.yaml) ^
               -replace '__TAG__','%IMAGE_TAG%' ^
-              -replace 'docker.io/YOUR_DOCKERHUB_USERNAME/studentsurvey-frontend','%FRONTEND_IMG%' ^
+              -replace 'docker.io/dhanush853/studentsurvey-frontend','%FRONTEND_IMG%' ^
             | kubectl -n "%NAMESPACE%" apply -f -
           kubectl -n "%NAMESPACE%" rollout status deployment/studentsurvey-frontend
         """
